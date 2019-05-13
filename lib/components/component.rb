@@ -1,85 +1,46 @@
-module Haijin::Gtk
+module Sirens
     class Component
+        include ComponentBehaviour
 
-        class << self
-            # Opening
-
-            def openOn(props)
-                self.new(props).open
-            end
-        end
 
         # Initializing
 
-        def initialize(props)
-            super()
-
-            @props = props
-            @main_handle = nil
-            @components = []
+        ##
+        # Initializes this component
+        #
+        def initialize(props = Hash[])
+            super(props)
 
             build
         end
 
+        ##
+        # Configures the widget with its model, styles and child widgets but does not apply the styles yet.
+        # This method is called when opening a widget with ::open and after calling ::initialize_handles.
+        # The building of the widget includes defining its model, its style props and its event blocks,
+        # but does no apply those styles yet. The wiring and synchronization of the component to the
+        # widget is done in the ::post_build method.
+        #
         def build()
-            initialize_handles
+            set_model( props.key?(:model) ? props[:model] : default_model )
 
-            renderWith(LayoutBuilder.new(self))
+            renderWith(LayoutBuilder.new(main_component: self))
 
-            apply_styles
-
-            subscribe_to_ui_events
+            self
         end
 
-        def initialize_handles()
-        end
-
+        ##
+        # Hook method to allow each Component subclass to define its default styles and compose its child components.
+        # Subclasses are expected to implement this method.
         def renderWith(layout)
+            raise RuntimeError.new("Class #{self.class.name} must implement a ::renderWith(layout) method.")
         end
 
-        def apply_styles()
-            props.each_pair { |key, value|
-                setter  = key.to_s + '='
-
-                main_handle.send(setter, value) if main_handle.respond_to?(setter)
-            }
-        end
-
-        def subscribe_to_ui_events()
-        end
-
-        # Accessing
-
-        def main_handle()
-            @main_handle
-        end
-
-        def props()
-            @props
-        end
-
-        def set_props(props)
-            @props.merge(props)
-
-            main_handle.public_methods()
-        end
-
-        # Subcomponents
-
-        def components()
-            @components
-        end
-
-        def addComponent(component)
-            @components << component
-
-            main_handle.add(component.main_handle)
-        end
-
-        # Opening
-
-        def open()
-            main_handle.show_all
+        ##
+        # Returns the top most view of this component.
+        #
+        def main_view()
+            main_component.main_view
         end
     end
 end
