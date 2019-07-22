@@ -45,7 +45,6 @@ module Sirens
     autoload(:Button, 'components/widgets/button.rb')
     autoload(:Checkbox, 'components/widgets/checkbox.rb')
     autoload(:RadioButton, 'components/widgets/radio_button.rb')
-    autoload(:ColumnProps, 'components/widgets/column_props.rb')
     autoload(:List, 'components/widgets/list.rb')
     autoload(:ListChoice, 'components/widgets/list_choice.rb')
     autoload(:InputText, 'components/widgets/input_text.rb')
@@ -53,6 +52,7 @@ module Sirens
     autoload(:TreeChoice, 'components/widgets/tree_choice.rb')
 
     # Layouts
+    autoload(:ColumnProps, 'layouts/column_props.rb')
     autoload(:LayoutBuilder, 'layouts/layout_builder.rb')
     autoload(:ColumnsBuilder, 'layouts/columns_builder.rb')
     autoload(:RadioButtonGroupBuilder, 'layouts/radio_button_group_builder.rb')
