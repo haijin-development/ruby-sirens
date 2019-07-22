@@ -21,10 +21,10 @@ module Sirens
         end
 
         ##
-        # Returns a PanedView.
+        # Returns a SplitterView.
         #
         def create_view()
-            PanedView.new(
+            SplitterView.new(
                 orientation: props.fetch(:orientation),
                 on_size_allocation: proc{ |width:, height:|
                     on_size_allocation(width: width, height: height)

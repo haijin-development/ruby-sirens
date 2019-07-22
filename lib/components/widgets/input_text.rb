@@ -4,7 +4,7 @@ module Sirens
         # Returns a TextView.
         #
         def create_view()
-            EntryView.new
+            InputTextView.new
         end
 
         ##

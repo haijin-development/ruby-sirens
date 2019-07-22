@@ -1,5 +1,5 @@
 module Sirens
-    class PanedView < View
+    class SplitterView < View
 
         # Initializing
 

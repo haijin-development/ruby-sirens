@@ -37,8 +37,8 @@ RSpec.describe 'When using a vertical Splitter component' do
     end
 
     describe 'view' do
-        it 'instantiates a PanedView' do
-            expect( widget.view ).to be_a(Sirens::PanedView)
+        it 'instantiates a SplitterView' do
+            expect( widget.view ).to be_a(Sirens::SplitterView)
         end
     end
 end
