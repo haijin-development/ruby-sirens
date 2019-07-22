@@ -1,13 +1,13 @@
 module Sirens
     ##
-    # Component that wraps a NotebookView.
+    # Component that wraps a TabsView.
     #
     class Tabs < PrimitiveComponent
         ##
         # Returns a StackView.
         #
         def create_view()
-            NotebookView.new
+            TabsView.new
         end
 
         ##

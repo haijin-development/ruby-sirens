@@ -63,7 +63,7 @@ module Sirens
     autoload(:WindowView, 'views/window_view.rb')
     autoload(:StackView, 'views/stack_view.rb')
     autoload(:SplitterView, 'views/splitter_view.rb')
-    autoload(:NotebookView, 'views/notebook_view.rb')
+    autoload(:TabsView, 'views/tabs_view.rb')
     autoload(:ButtonView, 'views/button_view.rb')
     autoload(:CheckboxView, 'views/checkbox_view.rb')
     autoload(:RadioButtonView, 'views/radio_button_view.rb')

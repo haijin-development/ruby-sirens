@@ -40,13 +40,13 @@ RSpec.describe 'When using a Tabs component' do
     end
 
     describe 'view' do
-        it 'instantiates a NotebookView' do
-            expect( widget.view ).to be_a(Sirens::NotebookView)
+        it 'instantiates a TabsView' do
+            expect( widget.view ).to be_a(Sirens::TabsView)
         end
     end
 
     describe 'sets the label to each tab' do
-        it 'instantiates a NotebookView' do
+        it 'instantiates a TabsView' do
             expect( widget.view.tab_label_at(index: 0) ).to eq('Tab 1')
             expect( widget.view.tab_label_at(index: 1) ).to eq('Tab 2')
         end

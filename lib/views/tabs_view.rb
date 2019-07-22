@@ -1,5 +1,5 @@
 module Sirens
-    class NotebookView < View
+    class TabsView < View
 
         # Initializing
 
