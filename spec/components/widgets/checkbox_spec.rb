@@ -25,11 +25,11 @@ RSpec.describe 'When using a Checkbox component' do
     end
 
     describe 'view' do
-        it 'instantiates a CheckButtonView' do
-            expect( widget.view ).to be_a(Sirens::CheckButtonView)
+        it 'instantiates a CheckboxView' do
+            expect( widget.view ).to be_a(Sirens::CheckboxView)
         end
 
-        it 'styles the CheckButtonView label' do
+        it 'styles the CheckboxView label' do
             expect( widget.view.label ).to eq('click')
         end
     end

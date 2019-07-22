@@ -1,5 +1,5 @@
 module Sirens
-    class CheckButtonView < View
+    class CheckboxView < View
 
         # Class methods
 
