@@ -13,6 +13,7 @@ module Sirens
 
                     column label: 'Namespaces',
                         get_text_block: proc{ |a_module| a_module.name }
+
                 end
 
             end

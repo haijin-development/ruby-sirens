@@ -72,6 +72,9 @@ module Sirens
     autoload(:TextView, 'views/text_view.rb')
     autoload(:TreeView, 'views/tree_view.rb')
 
+    # Sirens
+    
+    autoload(:Icons, 'sirens/models/icons.rb')
     autoload(:ModuleBrowserModel, 'sirens/models/module_browser_model.rb')
     autoload(:MethodModel, 'sirens/models/method_model.rb')
     autoload(:ConstantModel, 'sirens/models/constant_model.rb')

@@ -36,6 +36,9 @@ module Sirens
                         styles id: :methods_list,
                             show_headers: false
 
+                        column label: '',
+                            get_image_block: component.props[:get_method_image_block]
+
                         column label: 'Methods',
                             get_text_block: proc{ |method| method }
                     end

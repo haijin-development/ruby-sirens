@@ -45,12 +45,16 @@ module Sirens
 
         # Building columns
 
+        def list_store_type_for(column_props)
+            return GdkPixbuf::Pixbuf if column_props.has_image_block?
+
+            String
+        end
+
         def define_columns(columns_props_array)
             @columns_props = columns_props_array
 
-            list_store_types = @columns_props
-                .collect { |each_column_props| each_column_props.fetch(:type, :text) }
-                .collect { |type| String }
+            list_store_types = @columns_props.collect { |type| list_store_type_for(type) }
 
             tree_view.set_model(Gtk::ListStore.new(*list_store_types))
 
@@ -60,12 +64,21 @@ module Sirens
         end
 
         def add_column_with_props(props)
-            column_type = props.fetch(:type, :text)
             column_index = tree_view.columns.size
 
-            renderer = Gtk::CellRendererText.new
+            col = nil
 
-            col = Gtk::TreeViewColumn.new(props[:label], renderer, column_type => column_index)
+            column_label = props[:label]
+
+            if props.has_image_block?
+                renderer = Gtk::CellRendererPixbuf.new
+
+                col = Gtk::TreeViewColumn.new(column_label, renderer, pixbuf: column_index)
+            else
+                renderer = Gtk::CellRendererText.new
+
+                col = Gtk::TreeViewColumn.new(column_label, renderer, text: column_index)
+            end
 
             tree_view.append_column(col)
         end
@@ -189,8 +202,20 @@ module Sirens
 
         def set_item_column_values(item:, iter:)
             @columns_props.each_with_index { |column, column_index|
-                iter[column_index] = column.display_text_of(item)
+                colum_value = display_data_of(item, column, column_index)
+
+                iter.set_value(column_index, colum_value)
             }
+        end
+
+        def display_data_of(item, column, column_index)
+            if column.has_image_block?
+                image_file = column.display_image_of(item).to_s
+
+                return GdkPixbuf::Pixbuf.new(file: image_file, width: 16, height: 16)
+            end
+
+            column.display_text_of(item)
         end
 
         # Querying

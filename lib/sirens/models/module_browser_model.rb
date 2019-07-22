@@ -122,18 +122,30 @@ module Sirens
                 return
             end
 
-            a_module = module_ancestors.selection.value
-
-            if showing_instance_methods?
-                method = a_module.instance_method(method_name)
-            else
-                method = a_module.method(method_name)
-            end
+            method = method_named(method_name)
 
             method_source_code.set_method(method)
         end
 
         # Calculated
+
+        def method_named(method_name)
+            a_module = module_ancestors.selection.value
+
+            if showing_instance_methods?
+                a_module.instance_method(method_name)
+            else
+                a_module.method(method_name)
+            end
+        end
+
+        def icon_for(method_name)
+            method = method_named(method_name)
+
+            filename = 'public-method.png'
+            
+            Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename             
+        end
 
         ##
         # Answers all the namespaces in the running environment
