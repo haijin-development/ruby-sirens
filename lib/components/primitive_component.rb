@@ -4,8 +4,7 @@ module Sirens
     # A PrimitiveView implements the actual GUI binding to a Widget (a Gtk widget, for instance).
     # Besides acting as a regular Component, PrimitiveComponent also takes care of handling the PrimitiveView.
     #
-    class PrimitiveComponent
-        include ComponentBehaviour
+    class PrimitiveComponent < AbstractComponent
 
         # Initializing
 

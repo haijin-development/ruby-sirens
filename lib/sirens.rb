@@ -35,7 +35,7 @@ module Sirens
     autoload(:TreeChoiceModel, 'models/tree_choice_model.rb')
 
     # Components
-    autoload(:ComponentBehaviour, 'components/component_behaviour.rb')
+    autoload(:AbstractComponent, 'components/abstract_component.rb')
     autoload(:Component, 'components/component.rb')
     autoload(:PrimitiveComponent, 'components/primitive_component.rb')
     autoload(:Window, 'components/containers/window.rb')

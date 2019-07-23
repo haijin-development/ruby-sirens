@@ -1,7 +1,5 @@
 module Sirens
-    class Component
-        include ComponentBehaviour
-
+    class Component < AbstractComponent
 
         # Initializing
 

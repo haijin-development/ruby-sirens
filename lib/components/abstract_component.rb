@@ -1,19 +1,13 @@
 module Sirens
-    module ComponentBehaviour
-        module ClassMethods
-            # Opening
+    class AbstractComponent
+        # Opening
 
-            ##
-            # Todo: Opens a new window with this component. Currently only works for actual Windows.
-            #
-            def open(props = Hash[])
-                self.new(props)
-                    .open
-            end
-        end
-
-        def self.included(base)
-            base.extend(ClassMethods)
+        ##
+        # Todo: Opens a new window with this component. Currently only works for actual Windows.
+        #
+        def self.open(props = Hash[])
+            self.new(props)
+                .open
         end
 
         # Initializing
