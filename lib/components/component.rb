@@ -12,6 +12,10 @@ module Sirens
             build
         end
 
+        def create_view()
+            nil
+        end
+
         ##
         # Configures the widget with its model, styles and child widgets but does not apply the styles yet.
         # This method is called when opening a widget with ::open and after calling ::initialize_handles.

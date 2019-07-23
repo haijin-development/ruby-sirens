@@ -20,8 +20,17 @@ module Sirens
 
             @props = Hash[]
             @components = []
+            @props = props
 
-            set_props(props)
+            @view = create_view
+        end
+
+        ##
+        # Creates the PrimitiveView that this component wraps.
+        # This method must be implemented by each subclass.
+        #
+        def create_view()
+            raise RuntimeError.new("Class #{self.class.name} must implement a ::create_view() method.")
         end
 
         # Accessing
@@ -80,7 +89,11 @@ module Sirens
             on_model_changed(new_model: new_model, old_model: old_model)
         end
 
-        def on_model_changed(new_model:, old_model:)
+        ##
+        # Returns this component View.
+        #
+        def view()
+            @view
         end
 
         # Child components
@@ -150,5 +163,7 @@ module Sirens
             self
         end
 
+        def on_model_changed(new_model:, old_model:)
+        end
     end
 end

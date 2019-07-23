@@ -14,8 +14,6 @@ module Sirens
         def initialize(props = Hash[])
             super(props)
 
-            @view = create_view
-
             @updating_view = false
 
             apply_props
@@ -36,14 +34,6 @@ module Sirens
             set_model( props.key?(:model) ? props[:model] : default_model )
         end
 
-        ##
-        # Creates the PrimitiveView that this component wraps.
-        # This method must be implemented by each subclass.
-        #
-        def create_view()
-            raise RuntimeError.new("Class #{self.class.name} must implement a ::create_view() method.")
-        end
-
         # Accessing
 
         ##
@@ -56,13 +46,6 @@ module Sirens
             apply_props
 
             sync_ui_from_model if props.key?(:model)
-        end
-
-        ##
-        # Returns this component View.
-        #
-        def view()
-            @view
         end
 
         ##
