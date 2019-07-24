@@ -8,9 +8,9 @@ RSpec.describe 'When using a Button component' do
                 @was_clicked = false
             end
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
-                    layout.button label: 'click',
+                    button label: 'click',
                         on_clicked: proc{ component.was_clicked = true }
                 end
              end

@@ -52,10 +52,10 @@ module Sirens
     autoload(:TreeChoice, 'components/widgets/tree_choice.rb')
 
     # Layouts
-    autoload(:ColumnProps, 'layouts/column_props.rb')
-    autoload(:LayoutBuilder, 'layouts/layout_builder.rb')
-    autoload(:ColumnsBuilder, 'layouts/columns_builder.rb')
-    autoload(:RadioButtonGroupBuilder, 'layouts/radio_button_group_builder.rb')
+    autoload(:ColumnProps, 'components_builder/column_props.rb')
+    autoload(:LayoutBuilder, 'components_builder/layout_builder.rb')
+    autoload(:ColumnsBuilder, 'components_builder/columns_builder.rb')
+    autoload(:RadioButtonGroupBuilder, 'components_builder/radio_button_group_builder.rb')
 
     # Views
     autoload(:View, 'views/view.rb')

@@ -2,7 +2,7 @@ RSpec.describe 'When using a List component' do
     before(:all) {
         class ListTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
                     list do
                         styles id: :namespace_list,

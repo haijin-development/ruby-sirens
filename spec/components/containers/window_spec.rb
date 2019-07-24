@@ -2,8 +2,8 @@ RSpec.describe 'When using a Window component' do
     before(:all) {
         class WindowTest < Sirens::Component
 
-            def renderWith(layout)
-                layout.render do |component|
+            def render_with(layout)
+                layout.render do
 
                     window width: 300, height: 100 do
                         styles title: 'Window Test'

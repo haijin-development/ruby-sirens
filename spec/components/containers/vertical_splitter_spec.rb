@@ -2,7 +2,7 @@ RSpec.describe 'When using a vertical Splitter component' do
     before(:all) {
         class VerticalSplitterTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     vertical_splitter width: 300 do

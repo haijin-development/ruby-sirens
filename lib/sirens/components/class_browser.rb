@@ -3,7 +3,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             browser_model = model
 
             layout.render do |component|

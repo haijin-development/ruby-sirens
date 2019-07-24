@@ -26,7 +26,7 @@ module Sirens
         def build()
             set_model( props.key?(:model) ? props[:model] : default_model )
 
-            renderWith(LayoutBuilder.new(main_component: self))
+            render_with(LayoutBuilder.new(root_component: self))
 
             self
         end
@@ -34,8 +34,8 @@ module Sirens
         ##
         # Hook method to allow each Component subclass to define its default styles and compose its child components.
         # Subclasses are expected to implement this method.
-        def renderWith(layout)
-            raise RuntimeError.new("Class #{self.class.name} must implement a ::renderWith(layout) method.")
+        def render_with(layout)
+            raise RuntimeError.new("Class #{self.class.name} must implement a ::render_with(layout) method.")
         end
 
         ##

@@ -2,7 +2,7 @@ RSpec.describe 'When using a horizontal Stack component' do
     before(:all) {
         class HorizontalStackTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     horizontal_stack width: 300 do

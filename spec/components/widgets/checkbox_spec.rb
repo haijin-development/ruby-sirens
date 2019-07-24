@@ -2,8 +2,8 @@ RSpec.describe 'When using a Checkbox component' do
     before(:all) {
         class CheckboxTest < Sirens::Component
 
-            def renderWith(layout)
-                layout.render do |component|
+            def render_with(layout)
+                layout.render do
                     checkbox label: 'click'
                 end
             end

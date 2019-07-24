@@ -2,7 +2,7 @@ RSpec.describe 'When using a horizontal Splitter component' do
     before(:all) {
         class HorizontalSplitterTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     horizontal_splitter width: 300 do

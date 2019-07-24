@@ -2,7 +2,7 @@ RSpec.describe 'When using a vertical Stack component' do
     before(:all) {
         class VerticalStackTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     vertical_stack width: 300 do

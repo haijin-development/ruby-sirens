@@ -2,7 +2,7 @@ RSpec.describe 'When using a Tabs component' do
     before(:all) {
         class TabsTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     tabs width: 300 do
