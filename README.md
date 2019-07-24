@@ -64,6 +64,14 @@ evaluate code and browse the result:
 ![Object browser](./docs/2.png)
 
 
+### Testing
+
+Run the tests with
+
+```
+bundle exec rspec
+```
+
 ### References
 
 These utilities are heavily based in the Smalltalk browsers, in particular in the [Object Arts](https://www.object-arts.com/)
