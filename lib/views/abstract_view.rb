@@ -40,9 +40,18 @@ module Sirens
             super()
 
             @child_views = []
+            @attributes = Hash[]
         end
 
         # Accessing
+
+        def attribute_at(key)
+            @attributes[key]
+        end
+
+        def set_attribute(key, value)
+            @attributes[key] = value
+        end
 
         ##
         # Returns the main handle of this View.

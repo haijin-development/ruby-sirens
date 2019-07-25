@@ -36,6 +36,11 @@ module Sirens
         # Adds the child_component to this component.
         #
         def add_component(child_component)
+            child_component.view.set_attribute(
+                :splitter_proportion,
+                child_component.props[:splitter_proportion]
+            )
+
             if @child_components.size < 2
                 @child_components << child_component
 
