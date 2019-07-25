@@ -140,6 +140,8 @@ module Sirens
         # Removes a child view.
         #
         def remove_view(child_view)
+            @child_views.delete(child_view)
+
             main_handle.remove(child_view.main_handle)
         end
 
