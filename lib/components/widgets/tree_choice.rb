@@ -68,14 +68,10 @@ module Sirens
 
             indices_path = model.path_of(selection_hierarchy)
 
-            while_updating_view do
-                view.set_selection_indices(indices_path)
-            end
+            view.set_selection_indices(indices_path)
         end
 
         def on_selection_changed(selection_items:, selection_paths:)
-            return if is_updating_view?
-
             model.set_selection_from_path(path: selection_paths.first) unless model.nil?
         end
     end

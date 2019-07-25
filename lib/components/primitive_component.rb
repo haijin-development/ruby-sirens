@@ -14,8 +14,6 @@ module Sirens
         def initialize(props = Hash[])
             super(props)
 
-            @updating_view = false
-
             apply_props
 
             sync_ui_from_model
@@ -25,11 +23,9 @@ module Sirens
         # Applies the props to the view.
         #
         def apply_props()
-            if ! view.nil?
-                @view.apply_props(props)
+            @view.apply_props(props)
 
-                @view.populate_popup_menu_block = proc { |menu:| populate_popup_menu(menu: menu) }
-            end
+            @view.populate_popup_menu_block = proc { |menu:| populate_popup_menu(menu: menu) }
 
             set_model( props.key?(:model) ? props[:model] : default_model )
         end
@@ -44,8 +40,6 @@ module Sirens
             super(props)
 
             apply_props
-
-            sync_ui_from_model if props.key?(:model)
         end
 
         ##
@@ -111,27 +105,5 @@ module Sirens
         #
         def sync_ui_from_model()
         end
-
-        ##
-        # Returns true if this component is currently updating the view.
-        #
-        def is_updating_view?()
-            @updating_view
-        end
-
-        ##
-        # Flags that this component is updating the view during the evaluation of the given &block.
-        #
-        def while_updating_view(&block)
-            updating = is_updating_view?
-
-            @updating_view = true
-
-            begin
-                block.call
-            ensure
-                @updating_view = updating
-            end
-         end
     end
 end
