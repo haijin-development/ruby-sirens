@@ -1,5 +1,5 @@
 module Sirens
-    class InputTextView < View
+    class InputTextView < WidgetView
 
         # Initializing
 

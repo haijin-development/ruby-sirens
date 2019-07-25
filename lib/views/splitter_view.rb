@@ -1,5 +1,5 @@
 module Sirens
-    class SplitterView < View
+    class SplitterView < WidgetView
 
         # Initializing
 

@@ -1,5 +1,5 @@
 module Sirens
-    class TabsView < View
+    class TabsView < WidgetView
 
         # Initializing
 

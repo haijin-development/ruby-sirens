@@ -1,5 +1,5 @@
 module Sirens
-    class ListView < View
+    class ListView < WidgetView
 
         # Class methods
 

@@ -1,5 +1,5 @@
 module Sirens
-    class TextView < View
+    class TextView < WidgetView
         # Class methods
 
         class << self

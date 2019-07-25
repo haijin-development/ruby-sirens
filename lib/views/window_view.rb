@@ -1,5 +1,5 @@
 module Sirens
-    class WindowView < View
+    class WindowView < WidgetView
 
         # Class methods
 

@@ -1,5 +1,5 @@
 module Sirens
-    class TreeView < View
+    class TreeView < WidgetView
 
         # Class methods
 

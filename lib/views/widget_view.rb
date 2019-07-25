@@ -11,7 +11,7 @@ module Sirens
     # more consistent with regular Components and it makes it easier to switch between GUI libraries
     # (say, from Gtk to Qt).
     #
-    class View
+    class WidgetView
 
         # Class methods
 
