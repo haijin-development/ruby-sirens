@@ -58,6 +58,7 @@ module Sirens
     autoload(:RadioButtonGroupBuilder, 'components_builder/radio_button_group_builder.rb')
 
     # Views
+    autoload(:AbstractView, 'views/abstract_view.rb')
     autoload(:WidgetView, 'views/widget_view.rb')
     autoload(:MenuView, 'views/menu_view.rb')
     autoload(:WindowView, 'views/window_view.rb')
