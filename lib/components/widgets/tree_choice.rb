@@ -43,10 +43,7 @@ module Sirens
         # Syncs the ui from the model.
         #
        def sync_ui_from_model()
-            return if view.nil?
-
-            view.clear_items
-            view.add_items(parent_iter: nil, items: model.tree.roots, index: 0)
+            view.set_roots(model.tree.roots)
         end
 
         # Events

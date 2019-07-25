@@ -212,6 +212,12 @@ module Sirens
             tree_store.clear
         end
 
+        def set_roots(root_items)
+            clear_items
+
+            add_items(parent_iter: nil, items: root_items, index: 0)
+        end
+
         # Adding
 
         def add_items(items:, parent_iter:, index:)
