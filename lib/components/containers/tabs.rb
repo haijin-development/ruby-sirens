@@ -18,7 +18,7 @@ module Sirens
 
             tab_label_text = child_component.props[:tab_label]
 
-            view.set_tab_label_at(index: components.size - 1, text: tab_label_text)
+            view.set_tab_label_at(index: @child_components.size - 1, text: tab_label_text)
         end
     end
 end

@@ -19,7 +19,7 @@ module Sirens
             super()
 
             @props = Hash[]
-            @components = []
+            @child_components = []
             @props = props
 
             @view = create_view
@@ -53,15 +53,15 @@ module Sirens
         ##
         # Returns the child components of this component.
         #
-        def components()
-            @components
+        def child_components()
+            @child_components
         end
 
         ##
         # Returns the main child component.
         #
         def main_component()
-            @components.first
+            @child_components.first
         end
 
         ##
@@ -102,7 +102,7 @@ module Sirens
         # Adds the child_component to this component.
         #
         def add_component(child_component)
-            components << child_component
+            @child_components << child_component
 
             on_component_added(child_component)
 
@@ -124,14 +124,14 @@ module Sirens
         # Removes the last child component and returns it.
         #
         def remove_last_component()
-            remove_component_at(index: components.size - 1)
+            remove_component_at(index: @child_components.size - 1)
         end
 
         ##
         # Removes the component at the index-th position.
         #
         def remove_component_at(index:)
-            component = components.delete_at(index)
+            component = @child_components.delete_at(index)
 
             main_view.remove_view(component.main_view)
 

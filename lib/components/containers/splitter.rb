@@ -36,8 +36,8 @@ module Sirens
         # Adds the child_component to this component.
         #
         def add_component(child_component)
-            if components.size < 2
-                components << child_component
+            if @child_components.size < 2
+                @child_components << child_component
 
                 on_component_added(child_component)
 
@@ -46,7 +46,7 @@ module Sirens
 
             last_child = remove_last_component
 
-            new_splitter_proportion = 1.0 - components.first.props[:splitter_proportion]
+            new_splitter_proportion = 1.0 - @child_components.first.props[:splitter_proportion]
 
             new_splitter = self.class.new(orientation: orientation)
 
@@ -56,7 +56,7 @@ module Sirens
             child_component.props[:splitter_proportion] = child_component.props[:splitter_proportion] / new_splitter_proportion
             new_splitter.add_component(child_component)
 
-            components << new_splitter
+            @child_components << new_splitter
             on_component_added(new_splitter)
         end
 
@@ -69,7 +69,7 @@ module Sirens
         # Events
 
         def on_size_allocation(width:, height:)
-            components.each do |child_component|
+            @child_components.each do |child_component|
                 size_proportion = child_component.props[:splitter_proportion]
 
                 next if size_proportion.nil?
