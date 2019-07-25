@@ -81,7 +81,7 @@ module Sirens
                         proportional_height = [proportional_height, child_component.props[:height]].max
                     end
 
-                    child_component.main_view.height = proportional_height
+                    child_component.view.height = proportional_height
 
                 else
                     proportional_width = width * size_proportion
@@ -90,7 +90,7 @@ module Sirens
                         proportional_width = [proportional_width, child_component.props[:width]].max
                     end
 
-                    child_component.main_view.width = proportional_width
+                    child_component.view.width = proportional_width
                 end
             end
         end

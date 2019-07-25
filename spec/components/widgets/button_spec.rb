@@ -30,7 +30,7 @@ RSpec.describe 'When using a Button component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do

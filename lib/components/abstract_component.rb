@@ -6,8 +6,9 @@ module Sirens
         # Todo: Opens a new window with this component. Currently only works for actual Windows.
         #
         def self.open(props = Hash[])
-            self.new(props)
-                .open
+            self.new(props).tap { |window|
+                window.open
+            }
         end
 
         # Initializing
@@ -55,13 +56,6 @@ module Sirens
         #
         def child_components()
             @child_components
-        end
-
-        ##
-        # Returns the main child component.
-        #
-        def main_component()
-            @child_components.first
         end
 
         ##
@@ -133,7 +127,7 @@ module Sirens
         def remove_component_at(index:)
             component = @child_components.delete_at(index)
 
-            main_view.remove_view(component.main_view)
+            @view.remove_view(component.view)
 
             component
         end
@@ -143,24 +137,6 @@ module Sirens
         # Subclasses may use it to perform further configuration on this component or its children.
         #
         def on_component_added(child_component)
-        end
-
-        ##
-        # Returns the top most view of this component.
-        # This method is required to assemble parent and child views.
-        #
-        def main_view()
-            raise RuntimeError.new("Class #{self.class.name} must implement a ::main_view() method.")
-        end
-
-        ##
-        # Todo: Opens this component in a Window.
-        # At this moment only works if the main_component is a window.
-        #
-        def open()
-            main_component.show
-
-            self
         end
 
         def on_model_changed(new_model:, old_model:)

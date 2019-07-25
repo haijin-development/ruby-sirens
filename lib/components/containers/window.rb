@@ -16,5 +16,9 @@ module Sirens
         def show()
             view.show
         end
+
+        def open()
+            show()
+        end
     end
 end

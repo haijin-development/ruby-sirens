@@ -26,7 +26,7 @@ RSpec.describe 'When using a Tabs component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do

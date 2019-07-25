@@ -15,7 +15,7 @@ RSpec.describe 'When using a Checkbox component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do

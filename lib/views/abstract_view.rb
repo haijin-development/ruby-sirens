@@ -132,8 +132,6 @@ module Sirens
         #
         def add_view(child_view)
             @child_views << child_view
-
-            main_handle.add(child_view.main_handle)
         end
 
         ##

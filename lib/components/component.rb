@@ -13,7 +13,7 @@ module Sirens
         end
 
         def create_view()
-            nil
+            ComponentView.new
         end
 
         ##
@@ -31,6 +31,15 @@ module Sirens
             self
         end
 
+
+        # Accessing
+    
+        def main_child_component()
+            @child_components.first
+        end
+
+        # Rendering
+
         ##
         # Hook method to allow each Component subclass to define its default styles and compose its child components.
         # Subclasses are expected to implement this method.
@@ -39,10 +48,14 @@ module Sirens
         end
 
         ##
-        # Returns the top most view of this component.
+        # Adds the child_component to this component.
         #
-        def main_view()
-            main_component.main_view
+        def on_component_added(child_component)
+            @view.add_view(child_component.view)
+        end
+
+        def open()
+            main_child_component.open
         end
     end
 end

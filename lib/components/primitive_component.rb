@@ -42,20 +42,13 @@ module Sirens
             apply_props
         end
 
-        ##
-        # Returns the top most view of this component.
-        #
-        def main_view()
-            view
-        end
-
         # Child components
 
         ##
         # Adds the child_component to this component.
         #
         def on_component_added(child_component)
-            view.add_view(child_component.main_view)
+            @view.add_view(child_component.view)
         end
 
         # Events

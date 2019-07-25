@@ -59,6 +59,7 @@ module Sirens
 
     # Views
     autoload(:AbstractView, 'views/abstract_view.rb')
+    autoload(:ComponentView, 'views/component_view.rb')
     autoload(:WidgetView, 'views/widget_view.rb')
     autoload(:MenuView, 'views/menu_view.rb')
     autoload(:WindowView, 'views/window_view.rb')

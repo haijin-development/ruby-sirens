@@ -83,5 +83,14 @@ module Sirens
 
             send(setter, value)
         end
+
+        ##
+        # Adds a child_view.
+        #
+        def add_view(child_view)
+            super(child_view)
+
+            main_handle.add(child_view.main_handle)
+        end
     end
 end
