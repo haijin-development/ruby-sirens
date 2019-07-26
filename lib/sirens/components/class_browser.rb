@@ -10,11 +10,11 @@ module Sirens
                 horizontal_splitter do
                     component AncestorsList.new(
                         model: browser_model.module_ancestors,
-                        splitter_proportion: 1.0/3.0
+                        splitter_proportion: 1.0/2.0
                     )
 
                     tabs do
-                        styles splitter_proportion: 2.0/3.0
+                        styles splitter_proportion: 1.0/2.0
 
                         component MethodsList.new(
                             model: browser_model.methods,

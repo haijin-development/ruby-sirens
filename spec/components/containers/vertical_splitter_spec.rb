@@ -8,8 +8,8 @@ RSpec.describe 'When using a vertical Splitter component' do
                     vertical_splitter width: 300 do
                         styles height: 100
 
-                        button label: 'Button 1'
-                        button label: 'Button 2'
+                        button splitter_proportion: 1/2, label: 'Button 1'
+                        button splitter_proportion: 1/2, label: 'Button 2'
                     end
 
                 end
