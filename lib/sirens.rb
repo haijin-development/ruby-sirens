@@ -1,4 +1,5 @@
 require 'gtk3'
+require 'method_source'
 
 module Sirens
     class << self
@@ -76,9 +77,10 @@ module Sirens
 
     # Sirens
     
+    autoload(:Method, 'sirens/models/method.rb')
     autoload(:Icons, 'sirens/models/icons.rb')
-    autoload(:ModuleBrowserModel, 'sirens/models/module_browser_model.rb')
     autoload(:MethodModel, 'sirens/models/method_model.rb')
+    autoload(:ModuleBrowserModel, 'sirens/models/module_browser_model.rb')
     autoload(:ConstantModel, 'sirens/models/constant_model.rb')
     autoload(:ObjectBrowserModel, 'sirens/models/object_browser_model.rb')
 

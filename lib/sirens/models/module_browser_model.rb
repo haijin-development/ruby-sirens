@@ -115,37 +115,17 @@ module Sirens
         end
 
         def on_method_changed(announcement)
-            method_name = announcement.new_value
+            selected_method = announcement.new_value
 
-            if method_name.nil?
+            if selected_method.nil?
                 method_source_code.set_method(nil)
                 return
             end
 
-            method = method_named(method_name)
-
-            method_source_code.set_method(method)
+            method_source_code.set_method(selected_method)
         end
 
         # Calculated
-
-        def method_named(method_name)
-            a_module = module_ancestors.selection.value
-
-            if showing_instance_methods?
-                a_module.instance_method(method_name)
-            else
-                a_module.method(method_name)
-            end
-        end
-
-        def icon_for(method_name)
-            method = method_named(method_name)
-
-            filename = 'public-method.png'
-            
-            Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename             
-        end
 
         ##
         # Answers all the namespaces in the running environment
@@ -181,6 +161,13 @@ module Sirens
         # Answers all the methods in the given class
         #
         def get_all_methods_in(a_module)
+            all_methods_defined_in(a_module)
+                .reject { |method| method.is_private? if !showing_private_methods? }
+                .reject { |method| method.is_protected? if !showing_protected_methods? }
+                .reject { |method| method.is_public? if !showing_public_methods? }
+        end
+
+        def all_methods_defined_in(a_module)
             return [] if a_module.nil?
 
             methods = []
@@ -188,16 +175,74 @@ module Sirens
             inherit = show_inherit_methods.value
 
             if showing_instance_methods?
-                methods.concat(a_module.private_instance_methods(inherit)) if showing_private_methods?
-                methods.concat(a_module.protected_instance_methods(inherit)) if showing_protected_methods?
-                methods.concat(a_module.public_instance_methods(inherit)) if showing_public_methods?
+                methods.concat(
+                    a_module.private_instance_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :private,
+                            instance_method: true
+                        )
+                    }
+                )
+
+                methods.concat(
+                    a_module.protected_instance_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :protected,
+                            instance_method: true
+                        )
+                    }
+                )
+                
+                methods.concat(
+                    a_module.public_instance_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :public,
+                            instance_method: true
+                        )
+                    }
+                )
             else
-                methods.concat(a_module.private_methods(inherit)) if showing_private_methods?
-                methods.concat(a_module.protected_methods(inherit)) if showing_protected_methods?
-                methods.concat(a_module.public_methods(inherit)) if showing_public_methods?
+                methods.concat(
+                    a_module.private_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :private,
+                            instance_method: false
+                        )
+                    }
+                )
+
+                methods.concat(
+                    a_module.protected_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :protected,
+                            instance_method: false
+                        )
+                    }
+                )
+                
+                methods.concat(
+                    a_module.public_methods(inherit).collect { |method_name|
+                        Sirens::Method.new(
+                            mod: a_module,
+                            name: method_name,
+                            visibility: :public,
+                            instance_method: false
+                        )
+                    }
+                )
             end
 
-            methods.sort
+            methods
         end
 
         ##

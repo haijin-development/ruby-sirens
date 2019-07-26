@@ -24,7 +24,7 @@ module Sirens
                             show_protected_methods: browser_model.show_protected_methods,
                             show_private_methods: browser_model.show_private_methods,
                             tab_label: 'Methods',
-                            get_method_image_block: proc{ |method_name| browser_model.icon_for(method_name) }
+                            get_method_image_block: proc{ |method| method.icon }
                         )
 
                         component ConstantsList.new(
