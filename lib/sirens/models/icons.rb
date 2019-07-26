@@ -3,11 +3,24 @@ require 'pathname'
 module Sirens
     class Icons
 
+        def self.icons()
+            @icons ||= Hash[
+                ::Module => 'module.png',
+                ::Class => 'class.png',
+                ::Array => 'array.png',
+                ::Hash => 'hash.png',
+                ::TrueClass => 'true.png',
+                ::FalseClass => 'false.png',
+                ::String => 'string.png',
+                ::Integer => 'number.png',
+                ::Float => 'number.png',
+            ]
+        end
+
         # Initializing
 
         def self.icon_for(object)
-            filename = object.is_a?(::Module) ?
-                icon_filename_for_module(object) : icon_filename_for_object(object)
+            filename = icons.fetch(object.class)
 
             Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename 
         end
