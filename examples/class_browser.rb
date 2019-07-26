@@ -15,11 +15,11 @@ class User
     attr_accessor :name, :last_name
 
     # Returns the full name of the user.
-    def full_name
+    def full_name()
+        name + ' ' + last_name
+    end
 end
 
 user = User.new(name: 'Lisa', last_name: 'Simpson')
-
-Sirens.browse(object: user)
 
 Sirens.browse(klass: user)

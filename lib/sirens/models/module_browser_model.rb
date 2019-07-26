@@ -242,7 +242,7 @@ module Sirens
                 )
             end
 
-            methods
+            methods.sort_by { |method| method.name }
         end
 
         ##

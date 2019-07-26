@@ -44,8 +44,16 @@ module Sirens
         # Querying
 
         def icon()
-            filename = 'public-method.png'
-            
+            if is_public?
+                filename = 'public-method.png'
+            elsif is_protected?
+                filename = 'protected-method.png'
+            elsif is_private?
+                filename = 'private-method.png'
+            else
+                raise RuntimeError.new('Uknown visibility type.')
+            end
+
             Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename             
         end
 
