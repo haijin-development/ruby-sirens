@@ -38,6 +38,9 @@ module Sirens
                                 component.browse(object: item.value)
                             }
 
+                            column label: '',
+                                get_image_block: proc{ |inst_var| inst_var.icon }
+
                             column label: 'Instance variables',
                                 get_text_block: proc { |inst_var| inst_var.display_string }
 

@@ -94,6 +94,10 @@ module Sirens
 
             attr_reader :key, :value
 
+            def icon()
+                Icons.icon_for(@value)
+            end
+
             def display_string()
                 return value_display_string if key.nil?
 

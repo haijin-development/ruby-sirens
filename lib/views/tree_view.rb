@@ -5,13 +5,6 @@ module Sirens
 
         class << self
             ##
-            # Answer the laze children placeholder.
-            #
-            def placeholder()
-                @placeholder ||= '__placeholder__'
-            end
-
-            ##
             # Answer the styles accepted by this view.
             #
             def view_accepted_styles()
@@ -60,14 +53,18 @@ module Sirens
 
         # Building columns
 
+        def tree_store_type_for(column_props)
+            return GdkPixbuf::Pixbuf if column_props.has_image_block?
+
+            String
+        end
+
         def define_columns(columns_props_array)
             @columns_props = columns_props_array
 
-            tree_store_types = @columns_props
-                .collect { |each_column_props| each_column_props.fetch(:type, :text) }
-                .collect { |type| String }
+            list_store_types = @columns_props.collect { |type| tree_store_type_for(type) }
 
-            tree_view.set_model(Gtk::TreeStore.new(*tree_store_types))
+            tree_view.set_model(Gtk::TreeStore.new(*list_store_types))
 
             @columns_props.each do |each_column_props|
                 add_column_with_props(each_column_props)
@@ -75,12 +72,21 @@ module Sirens
         end
 
         def add_column_with_props(props)
-            column_type = props.fetch(:type, :text)
             column_index = tree_view.columns.size
 
-            renderer = Gtk::CellRendererText.new
+            col = nil
 
-            col = Gtk::TreeViewColumn.new(props[:label], renderer, column_type => column_index)
+            column_label = props[:label]
+
+            if props.has_image_block?
+                renderer = Gtk::CellRendererPixbuf.new
+
+                col = Gtk::TreeViewColumn.new(column_label, renderer, pixbuf: column_index)
+            else
+                renderer = Gtk::CellRendererText.new
+
+                col = Gtk::TreeViewColumn.new(column_label, renderer, text: column_index)
+            end
 
             tree_view.append_column(col)
         end
@@ -193,7 +199,7 @@ module Sirens
         def on_row_expanded(iter:, tree_path:)
             child_iter = iter.first_child
 
-            return if tree_store.get_value(child_iter, 0) != self.class.placeholder
+            return if ! tree_store.get_value(child_iter, 0).nil?
 
             indices_path = tree_path.indices
 
@@ -240,9 +246,7 @@ module Sirens
             children_count = get_children_at(path: indices_path).size
 
             if children_count > 0
-                placeholder = tree_store.insert(iter, 0)
-
-                placeholder[0] = self.class.placeholder
+                tree_store.insert(iter, 0)
             end
         end
 
@@ -276,8 +280,20 @@ module Sirens
 
         def set_item_column_values(item:, iter:)
             @columns_props.each_with_index { |column, column_index|
-                iter[column_index] = column.display_text_of(item)
+                colum_value = display_data_of(item, column, column_index)
+
+                iter.set_value(column_index, colum_value)
             }
+        end
+
+        def display_data_of(item, column, column_index)
+            if column.has_image_block?
+                image_file = column.display_image_of(item).to_s
+
+                return GdkPixbuf::Pixbuf.new(file: image_file, width: 16, height: 16)
+            end
+
+            column.display_text_of(item)
         end
 
         # Querying

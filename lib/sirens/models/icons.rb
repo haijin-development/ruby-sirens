@@ -20,7 +20,7 @@ module Sirens
         # Initializing
 
         def self.icon_for(object)
-            filename = icons.fetch(object.class)
+            filename = icons.fetch(object.class, 'object.png')
 
             Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename 
         end
