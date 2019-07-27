@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
     s.metadata      = { 'source_code_uri' => 'https://github.com/haijin-development/ruby-sirens' }
     s.require_path  = 'lib'
 
-    s.requirements  << 'gtk3 gobject-introspection'
+    s.requirements  << 'gtk3 gobject-introspection method_source'
 
     s.add_runtime_dependency 'gtk3', '~> 3.0'
+    s.add_runtime_dependency 'method_source', '~> 0.9'
 end
