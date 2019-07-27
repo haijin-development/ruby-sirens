@@ -4,10 +4,10 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
     s.name          = 'sirens'
-    s.version       = '0.0.1'
+    s.version       = '0.1.0'
     s.licenses      = ['MIT']
-    s.summary       = 'Some simple development tools for Ruby.'
-    s.description   = 'Interactive tools to develop in Ruby, implemented in Ruby and GTK3.'
+    s.summary       = 'Development utilities for Ruby.'
+    s.description   = 'Interactive utilities to develop in Ruby, implemented in Ruby and GTK3.'
     s.authors       = ['Haijin Development', 'Martin Rubi']
     s.email         = 'haijin.development@gmail.com'
     s.files         = `git ls-files -- lib/*`.split("\n")
