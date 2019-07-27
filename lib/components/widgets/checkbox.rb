@@ -1,10 +1,10 @@
 module Sirens
     class Checkbox < PrimitiveComponent
         ##
-        # Returns a CheckButtonView.
+        # Returns a CheckboxView.
         #
         def create_view()
-            CheckButtonView.new(on_toggled: proc{ |state:| on_toggled(state: state) })
+            CheckboxView.new(on_toggled: proc{ |state:| on_toggled(state: state) })
         end
 
         ##

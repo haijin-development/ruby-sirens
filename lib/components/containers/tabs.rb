@@ -1,13 +1,13 @@
 module Sirens
     ##
-    # Component that wraps a NotebookView.
+    # Component that wraps a TabsView.
     #
     class Tabs < PrimitiveComponent
         ##
         # Returns a StackView.
         #
         def create_view()
-            NotebookView.new
+            TabsView.new
         end
 
         ##
@@ -18,7 +18,7 @@ module Sirens
 
             tab_label_text = child_component.props[:tab_label]
 
-            view.set_tab_label_at(index: components.size - 1, text: tab_label_text)
+            view.set_tab_label_at(index: @child_components.size - 1, text: tab_label_text)
         end
     end
 end

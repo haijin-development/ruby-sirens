@@ -1,5 +1,5 @@
 module Sirens
-    class RadioButtonView < View
+    class RadioButtonView < WidgetView
 
         # Class methods
 

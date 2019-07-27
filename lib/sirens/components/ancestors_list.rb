@@ -3,7 +3,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
 
             layout.render do |component|
                 choices_list do
@@ -12,6 +12,9 @@ module Sirens
                     styles(
                         show_headers: true
                     )
+
+                    column label: '',
+                        get_image_block: proc{ |a_module| Icons.icon_for(a_module) }
 
                     column label: 'Module ancestors',
                         get_text_block: proc{ |a_module| a_module.name }

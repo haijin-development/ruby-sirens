@@ -4,7 +4,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             layout.render do |component|
                 vertical_stack do
 
@@ -36,8 +36,11 @@ module Sirens
                         styles id: :methods_list,
                             show_headers: false
 
+                        column label: '',
+                            get_image_block: component.props[:get_method_image_block]
+
                         column label: 'Methods',
-                            get_text_block: proc{ |method| method }
+                            get_text_block: proc{ |method| method.name }
                     end
 
                     horizontal_stack do

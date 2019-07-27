@@ -20,7 +20,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             browser_model = model
 
             layout.render do |component|
@@ -39,17 +39,17 @@ module Sirens
 
                             component NamespacesList.new(
                                 model: browser_model.namespaces,
-                                splitter_proportion: 1.0/4.0
+                                splitter_proportion: 1.0/5.0
                             )
 
                             component ModulesList.new(
                                 model: browser_model.modules,
-                                splitter_proportion: 1.0/4.0,
+                                splitter_proportion: 1.0/5.0,
                             )
 
                             component ClassBrowser.new(
                                 model: browser_model,
-                                splitter_proportion: 2.0/4.0
+                                splitter_proportion: 1.0/5.0
                             )
                         end
 

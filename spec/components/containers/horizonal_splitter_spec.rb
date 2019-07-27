@@ -2,14 +2,14 @@ RSpec.describe 'When using a horizontal Splitter component' do
     before(:all) {
         class HorizontalSplitterTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     horizontal_splitter width: 300 do
                         styles height: 100
 
-                        button label: 'Button 1'
-                        button label: 'Button 2'
+                        button splitter_proportion: 1/2, label: 'Button 1'
+                        button splitter_proportion: 1/2, label: 'Button 2'
                     end
 
                 end
@@ -23,7 +23,7 @@ RSpec.describe 'When using a horizontal Splitter component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do
@@ -37,8 +37,8 @@ RSpec.describe 'When using a horizontal Splitter component' do
     end
 
     describe 'view' do
-        it 'instantiates a PanedView' do
-            expect( widget.view ).to be_a(Sirens::PanedView)
+        it 'instantiates a SplitterView' do
+            expect( widget.view ).to be_a(Sirens::SplitterView)
         end
     end
 end

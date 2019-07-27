@@ -43,10 +43,7 @@ module Sirens
         # Syncs the ui from the model.
         #
        def sync_ui_from_model()
-            return if view.nil?
-
-            view.clear_items
-            view.add_items(parent_iter: nil, items: model.tree.roots, index: 0)
+            view.set_roots(model.tree.roots)
         end
 
         # Events
@@ -68,14 +65,10 @@ module Sirens
 
             indices_path = model.path_of(selection_hierarchy)
 
-            while_updating_view do
-                view.set_selection_indices(indices_path)
-            end
+            view.set_selection_indices(indices_path)
         end
 
         def on_selection_changed(selection_items:, selection_paths:)
-            return if is_updating_view?
-
             model.set_selection_from_path(path: selection_paths.first) unless model.nil?
         end
     end

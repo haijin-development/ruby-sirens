@@ -16,7 +16,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             browser_model = model
 
             layout.render do |component|
@@ -37,6 +37,9 @@ module Sirens
                             handlers on_selection_action: proc { |index_path:, item:|
                                 component.browse(object: item.value)
                             }
+
+                            column label: '',
+                                get_image_block: proc{ |inst_var| inst_var.icon }
 
                             column label: 'Instance variables',
                                 get_text_block: proc { |inst_var| inst_var.display_string }

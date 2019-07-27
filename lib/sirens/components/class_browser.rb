@@ -3,18 +3,18 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             browser_model = model
 
             layout.render do |component|
                 horizontal_splitter do
                     component AncestorsList.new(
                         model: browser_model.module_ancestors,
-                        splitter_proportion: 1.0/3.0
+                        splitter_proportion: 1.0/2.0
                     )
 
                     tabs do
-                        styles splitter_proportion: 2.0/3.0
+                        styles splitter_proportion: 1.0/2.0
 
                         component MethodsList.new(
                             model: browser_model.methods,
@@ -23,7 +23,8 @@ module Sirens
                             show_public_methods: browser_model.show_public_methods,
                             show_protected_methods: browser_model.show_protected_methods,
                             show_private_methods: browser_model.show_private_methods,
-                            tab_label: 'Methods'
+                            tab_label: 'Methods',
+                            get_method_image_block: proc{ |method| method.icon }
                         )
 
                         component ConstantsList.new(

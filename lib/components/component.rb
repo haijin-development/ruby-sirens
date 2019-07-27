@@ -1,7 +1,5 @@
 module Sirens
-    class Component
-        include ComponentBehaviour
-
+    class Component < AbstractComponent
 
         # Initializing
 
@@ -14,6 +12,10 @@ module Sirens
             build
         end
 
+        def create_view()
+            ComponentView.new
+        end
+
         ##
         # Configures the widget with its model, styles and child widgets but does not apply the styles yet.
         # This method is called when opening a widget with ::open and after calling ::initialize_handles.
@@ -24,23 +26,36 @@ module Sirens
         def build()
             set_model( props.key?(:model) ? props[:model] : default_model )
 
-            renderWith(LayoutBuilder.new(main_component: self))
+            render_with(LayoutBuilder.new(root_component: self))
 
             self
         end
 
+
+        # Accessing
+    
+        def main_child_component()
+            @child_components.first
+        end
+
+        # Rendering
+
         ##
         # Hook method to allow each Component subclass to define its default styles and compose its child components.
         # Subclasses are expected to implement this method.
-        def renderWith(layout)
-            raise RuntimeError.new("Class #{self.class.name} must implement a ::renderWith(layout) method.")
+        def render_with(layout)
+            raise RuntimeError.new("Class #{self.class.name} must implement a ::render_with(layout) method.")
         end
 
         ##
-        # Returns the top most view of this component.
+        # Adds the child_component to this component.
         #
-        def main_view()
-            main_component.main_view
+        def on_component_added(child_component)
+            @view.add_view(child_component.view)
+        end
+
+        def open()
+            main_child_component.open
         end
     end
 end

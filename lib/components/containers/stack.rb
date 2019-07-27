@@ -32,7 +32,7 @@ module Sirens
         #
         def on_component_added(child_component)
             view.add_view(
-                child_component.main_view,
+                child_component.view,
                 expand: child_component.props.fetch(:stack_expand, true),
                 fill: child_component.props.fetch(:stack_fill, true),
                 padding: child_component.props.fetch(:stack_padding, 0)

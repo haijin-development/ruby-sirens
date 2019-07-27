@@ -4,7 +4,7 @@ module Sirens
 
         # Building
 
-        def renderWith(layout)
+        def render_with(layout)
             layout.render do |component|
                 choices_list do
                     model component.model

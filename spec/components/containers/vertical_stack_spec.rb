@@ -2,7 +2,7 @@ RSpec.describe 'When using a vertical Stack component' do
     before(:all) {
         class VerticalStackTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
 
                     vertical_stack width: 300 do
@@ -24,7 +24,7 @@ RSpec.describe 'When using a vertical Stack component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do
@@ -45,9 +45,9 @@ RSpec.describe 'When using a vertical Stack component' do
 
     describe 'when adding child components' do
         it 'stacks the components' do
-            expect( widget.components[0].view.label ).to eq('Button 1')
-            expect( widget.components[1].view.label ).to eq('Button 2')
-            expect( widget.components[2].view.label ).to eq('Button 3')
+            expect( widget.child_components[0].view.label ).to eq('Button 1')
+            expect( widget.child_components[1].view.label ).to eq('Button 2')
+            expect( widget.child_components[2].view.label ).to eq('Button 3')
         end
     end
 end

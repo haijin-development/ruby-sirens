@@ -43,26 +43,16 @@ then open a browser in any part of the application or in a test with:
 Sirens.browse(object: user)
 ```
 
-An object browser will pop up and will show the structure of the object:
+![Browsing objects](./docs/browsing-object.gif)
 
-![Object browser](./docs/1.png)
 
-By right clicking on any instance variable in the tree it is possible to pop up a new browser on its namespace, class, ancestors, methods and constants:
+### Testing
 
-![Class browser](./docs/3.png)
-
-It is also possible to browse an object class from any part of the application with:
+Run the tests with
 
 ```
-Sirens.browse(klass: user)
+bundle exec rspec
 ```
-
-
-The browser binds `self` to the selected object in the tree and it's possible to send messages to it or
-evaluate code and browse the result:
-
-![Object browser](./docs/2.png)
-
 
 ### References
 
@@ -85,8 +75,7 @@ to a common ancestor.
 I think the [final result](https://github.com/haijin-development/ruby-sirens/tree/master/lib/sirens) is both very
 simple to use and highly adaptable and its worth looking at it.
 
-Up to a certain point the graphics code remains in the View layer, so it would be possible to switch to any graphics
-library, be it GTK+ or QT.
+The graphics code remains in the View layer, so it would be possible to switch to any graphics library, be it GTK+ or QT.
 
 I like this implementation much better than the previous one I did several years ago and it could be spin-off to a GTK+
 gem on its own, but currently there are no plans to do that.

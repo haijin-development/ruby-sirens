@@ -1,5 +1,5 @@
 module Sirens
-    class StackView < View
+    class StackView < WidgetView
 
         # Initializing
 

@@ -10,7 +10,8 @@ module Sirens
             @value = value
         end
 
-        attr_reader :name, :value
+        attr_reader :name,
+            :value
 
         def display_string()
             value_print_string = value.inspect

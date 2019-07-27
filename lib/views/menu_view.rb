@@ -1,5 +1,5 @@
 module Sirens
-    class MenuView < View
+    class MenuView < WidgetView
 
         # Initializing
 

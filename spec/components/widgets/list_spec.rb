@@ -2,7 +2,7 @@ RSpec.describe 'When using a List component' do
     before(:all) {
         class ListTest < Sirens::Component
 
-            def renderWith(layout)
+            def render_with(layout)
                 layout.render do |component|
                     list do
                         styles id: :namespace_list,
@@ -22,7 +22,7 @@ RSpec.describe 'When using a List component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do

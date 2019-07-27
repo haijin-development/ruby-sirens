@@ -2,8 +2,8 @@ RSpec.describe 'When using a Checkbox component' do
     before(:all) {
         class CheckboxTest < Sirens::Component
 
-            def renderWith(layout)
-                layout.render do |component|
+            def render_with(layout)
+                layout.render do
                     checkbox label: 'click'
                 end
             end
@@ -15,7 +15,7 @@ RSpec.describe 'When using a Checkbox component' do
     }
 
     let(:widget) {
-        component.main_component
+        component.main_child_component
     }
 
     describe 'props' do
@@ -25,11 +25,11 @@ RSpec.describe 'When using a Checkbox component' do
     end
 
     describe 'view' do
-        it 'instantiates a CheckButtonView' do
-            expect( widget.view ).to be_a(Sirens::CheckButtonView)
+        it 'instantiates a CheckboxView' do
+            expect( widget.view ).to be_a(Sirens::CheckboxView)
         end
 
-        it 'styles the CheckButtonView label' do
+        it 'styles the CheckboxView label' do
             expect( widget.view.label ).to eq('click')
         end
     end
