@@ -167,82 +167,85 @@ module Sirens
                 .reject { |method| method.is_public? if !showing_public_methods? }
         end
 
-        def all_methods_defined_in(a_module)
-            return [] if a_module.nil?
+        def all_methods_defined_in(mod)
+            return [] if mod.nil?
 
-            methods = []
+            modules = show_inherit_methods.value === true ?
+                mod.ancestors : [mod]
 
-            inherit = show_inherit_methods.value
+            all_methods = []
 
-            if showing_instance_methods?
-                methods.concat(
-                    a_module.private_instance_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :private,
-                            instance_method: true
-                        )
-                    }
-                )
+            modules.each do |a_module|
+                if showing_instance_methods?
+                    all_methods.concat(
+                        a_module.private_instance_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :private,
+                                instance_method: true
+                            )
+                        }
+                    )
 
-                methods.concat(
-                    a_module.protected_instance_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :protected,
-                            instance_method: true
-                        )
-                    }
-                )
-                
-                methods.concat(
-                    a_module.public_instance_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :public,
-                            instance_method: true
-                        )
-                    }
-                )
-            else
-                methods.concat(
-                    a_module.private_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :private,
-                            instance_method: false
-                        )
-                    }
-                )
+                    all_methods.concat(
+                        a_module.protected_instance_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :protected,
+                                instance_method: true
+                            )
+                        }
+                    )
+                    
+                    all_methods.concat(
+                        a_module.public_instance_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :public,
+                                instance_method: true
+                            )
+                        }
+                    )
+                else
+                    all_methods.concat(
+                        a_module.private_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :private,
+                                instance_method: false
+                            )
+                        }
+                    )
 
-                methods.concat(
-                    a_module.protected_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :protected,
-                            instance_method: false
-                        )
-                    }
-                )
-                
-                methods.concat(
-                    a_module.public_methods(inherit).collect { |method_name|
-                        Sirens::Method.new(
-                            mod: a_module,
-                            name: method_name,
-                            visibility: :public,
-                            instance_method: false
-                        )
-                    }
-                )
+                    all_methods.concat(
+                        a_module.protected_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :protected,
+                                instance_method: false
+                            )
+                        }
+                    )
+                    
+                    all_methods.concat(
+                        a_module.public_methods(false).collect { |method_name|
+                            Sirens::Method.new(
+                                mod: a_module,
+                                name: method_name,
+                                visibility: :public,
+                                instance_method: false
+                            )
+                        }
+                    )
+                end
             end
 
-            methods.sort_by { |method| method.name }
+            all_methods.sort_by { |method| method.name }
         end
 
         ##

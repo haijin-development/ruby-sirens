@@ -8,10 +8,12 @@ module Sirens
             @visibility = visibility
             @is_instance_method = instance_method
 
-            @method_filename, @method_line_number = to_ruby_method.source_location
+            @ruby_method =  @is_instance_method === true ? 
+                @mod.instance_method(@name) : @mod.method(@name)
+
+            @method_filename, @method_line_number = @ruby_method.source_location
 
             @source_code = nil
-
         end
 
         # Accessing
@@ -62,19 +64,13 @@ module Sirens
         end
 
         def source_code()
-            if @source_code.nil?
-                method = to_ruby_method
-
-                @source_code ||= remove_indentation(method.comment) + "\n" + remove_indentation(method.source)
+            begin
+                @source_code ||= remove_indentation(@ruby_method.comment) +
+                    "\n" +
+                    remove_indentation(@ruby_method.source)                
+            rescue ::MethodSource::SourceNotFoundError => e
+                @source_code = "Could not locate source for #{@mod}::#{@name}"
             end
-        
-            @source_code
-        end
-
-        # Converting
-
-       def to_ruby_method()
-            is_instance_method? ? @mod.instance_method(@name) : @mod.method(@name)
         end
 
         # Utility methods
