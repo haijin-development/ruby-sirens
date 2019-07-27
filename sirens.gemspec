@@ -4,7 +4,7 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
     s.name          = 'sirens'
-    s.version       = '0.1.0'
+    s.version       = '0.1.1'
     s.licenses      = ['MIT']
     s.summary       = 'Development utilities for Ruby.'
     s.description   = 'Interactive utilities to develop in Ruby, implemented in Ruby and GTK3.'
