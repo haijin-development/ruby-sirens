@@ -24,11 +24,5 @@ module Sirens
 
             Pathname.new(__FILE__).dirname + '../../../resources/icons/' + filename 
         end
-
-        def self.icon_filename_for_module(mod)
-            return 'circle.png' if mod === ::Class
-
-            return 'rectangle.png'
-        end
     end
 end
